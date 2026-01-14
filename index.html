@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>高尿酸·痛风管理 - 科学降尿酸指南</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Microsoft YaHei", "SimSun", sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #e0f7fa 0%, #b2ebf2 100%);
+        }
+
+        header {
+            background: linear-gradient(135deg, #00897b 0%, #00695c 100%);
+            color: white;
+            text-align: center;
+            padding: 3rem 2rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        header p {
+            font-size: 1.2rem;
+            opacity: 0.95;
+        }
+
+        .alert {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
+            color: white;
+            padding: 1.5rem;
+            text-align: center;
+            font-size: 1.1rem;
+            font-weight: bold;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        .info-box {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+            border-left: 5px solid #00897b;
+        }
+
+        .info-box h2 {
+            color: #00897b;
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+
+        .info-box p {
+            font-size: 1.1rem;
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 0.8rem;
+        }
+
+        .reference-value {
+            background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 1rem 0;
+            border-left: 4px solid #ff9800;
+        }
+
+        .reference-value strong {
+            color: #e65100;
+            font-size: 1.2rem;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+        }
+
+        .card h3 {
+            color: #00897b;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+            border-bottom: 3px solid #00897b;
+            padding-bottom: 0.5rem;
+        }
+
+        .food-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        .food-section h2 {
+            color: #00897b;
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 2rem;
+        }
+
+        .food-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .food-card {
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .food-card.forbidden {
+            background: linear-gradient(135deg, #ffebee 0%, #ffcdd2 100%);
+            border-left: 5px solid #f44336;
+        }
+
+        .food-card.limit {
+            background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
+            border-left: 5px solid #ff9800;
+        }
+
+        .food-card.safe {
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+            border-left: 5px solid #4caf50;
+        }
+
+        .food-card h4 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .food-card.forbidden h4 {
+            color: #c62828;
+        }
+
+        .food-card.limit h4 {
+            color: #ef6c00;
+        }
+
+        .food-card.safe h4 {
+            color: #2e7d32;
+        }
+
+        .food-card h4::before {
+            font-size: 1.5rem;
+            margin-right: 0.5rem;
+        }
+
+        .food-card.forbidden h4::before {
+            content: "🚫";
+        }
+
+        .food-card.limit h4::before {
+            content: "⚠️";
+        }
+
+        .food-card.safe h4::before {
+            content: "✅";
+        }
+
+        .food-card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .food-card li {
+            padding: 0.4rem 0;
+            padding-left: 1.2rem;
+            position: relative;
+            color: #555;
+        }
+
+        .food-card li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .food-card.forbidden li::before {
+            color: #f44336;
+        }
+
+        .food-card.limit li::before {
+            color: #ff9800;
+        }
+
+        .food-card.safe li::before {
+            color: #4caf50;
+        }
+
+        .lifestyle-tips {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        .lifestyle-tips h2 {
+            color: #00897b;
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 2rem;
+        }
+
+        .tip-item {
+            background: linear-gradient(135deg, #e0f2f1 0%, #b2dfdb 100%);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            border-left: 5px solid #00897b;
+        }
+
+        .tip-item h4 {
+            color: #00695c;
+            margin-bottom: 0.8rem;
+            font-size: 1.3rem;
+        }
+
+        .tip-item p {
+            color: #555;
+            line-height: 1.7;
+        }
+
+        .emergency {
+            background: linear-gradient(135deg, #ffebee 0%, #ffcdd2 100%);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+            border: 3px solid #f44336;
+        }
+
+        .emergency h2 {
+            color: #c62828;
+            text-align: center;
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+        }
+
+        .emergency-content {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+        }
+
+        .emergency-content h4 {
+            color: #c62828;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .emergency-content ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .emergency-content li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            color: #555;
+        }
+
+        .emergency-content li::before {
+            content: "⚡";
+            position: absolute;
+            left: 0;
+        }
+
+        .water-reminder {
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            margin-bottom: 2rem;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+        }
+
+        .water-reminder h3 {
+            color: #1565c0;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .water-reminder p {
+            font-size: 1.2rem;
+            color: #555;
+        }
+
+        .purine-table {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+            overflow-x: auto;
+        }
+
+        .purine-table h2 {
+            color: #00897b;
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 2rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 1rem;
+        }
+
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background: linear-gradient(135deg, #00897b 0%, #00695c 100%);
+            color: white;
+            font-weight: bold;
+        }
+
+        tr:hover {
+            background: #f5f5f5;
+        }
+
+        .high-purine {
+            background: #ffebee;
+        }
+
+        .medium-purine {
+            background: #fff3e0;
+        }
+
+        .low-purine {
+            background: #e8f5e9;
+        }
+
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+
+        footer p {
+            opacity: 0.8;
+            margin-bottom: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+            .food-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .highlight {
+            background: #fff9c4;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>💚 高尿酸·痛风管理指南 💚</h1>
+        <p>科学控制 · 健康生活 · 远离痛风</p>
+    </header>
+
+    <div class="alert">
+        ⚠️ 重要提示：本指南仅供参考，具体治疗方案请遵医嘱！如有急性痛风发作，请立即就医！
+    </div>
+
+    <div class="container">
+        <div class="info-box">
+            <h2>📊 了解您的尿酸水平</h2>
+            <p>尿酸是体内嘌呤代谢的最终产物。当尿酸生成过多或排泄减少时，会导致血尿酸升高，形成高尿酸血症，进而可能引发痛风。</p>
+            
+            <div class="reference-value">
+                <p><strong>正常尿酸值参考范围：</strong></p>
+                <p>• 男性：<span class="highlight">149-416 μmol/L</span></p>
+                <p>• 女性：<span class="highlight">89-357 μmol/L</span></p>
+                <p>• <strong style="color: #c62828;">高尿酸血症诊断标准：</strong>男性 >420 μmol/L，女性 >360 μmol/L</p>
+                <p>• <strong style="color: #00897b;">控制目标：</strong>有痛风史者应控制在 <span class="highlight">360 μmol/L 以下</span>，理想目标 <span class="highlight">300 μmol/L 以下</span></p>
+            </div>
+        </div>
+
+        <div class="food-section">
+            <h2>🍽️ 饮食分级管理</h2>
+            <div class="food-grid">
+                <div class="food-card forbidden">
+                    <h4>严格禁止（高嘌呤）</h4>
+                    <p style="color: #c62828; font-weight: bold; margin-bottom: 1rem;">嘌呤含量 >150mg/100g</p>
+                    <ul>
+                        <li>动物内脏（肝、肾、脑、心）</li>
+                        <li>浓肉汤、火锅汤底</li>
+                        <li>沙丁鱼、凤尾鱼、鲭鱼</li>
+                        <li>贝类（扇贝、蛤蜊、生蚝）</li>
+                        <li>小鱼干、虾米</li>
+                        <li>浓鸡汤、浓骨头汤</li>
+                        <li>啤酒、黄酒</li>
+                        <li>酵母粉、肉汁</li>
+                    </ul>
+                </div>
+
+                <div class="food-card limit">
+                    <h4>限量食用（中嘌呤）</h4>
+                    <p style="color: #ef6c00; font-weight: bold; margin-bottom: 1rem;">嘌呤含量 75-150mg/100g</p>
+                    <ul>
+                        <li>猪肉、牛肉、羊肉（每日≤100g）</li>
+                        <li>鱼类（草鱼、鲤鱼、鲈鱼等）</li>
+                        <li>海鲜（虾、蟹，适量）</li>
+                        <li>干豆类（黄豆、黑豆、绿豆）</li>
+                        <li>菠菜、芦笋、蘑菇、豆芽</li>
+                        <li>白酒（尽量避免）</li>
+                        <li>高糖饮料（限制）</li>
+                    </ul>
+                </div>
+
+                <div class="food-card safe">
+                    <h4>安全食用（低嘌呤）</h4>
+                    <p style="color: #2e7d32; font-weight: bold; margin-bottom: 1rem;">嘌呤含量 <75mg/100g</p>
+                    <ul>
+                        <li>米、面、杂粮（主食）</li>
+                        <li>鸡蛋、鸭蛋（每日1-2个）</li>
+                        <li>牛奶、酸奶、奶酪</li>
+                        <li>大部分蔬菜（除限制类）</li>
+                        <li>水果（樱桃、苹果、梨等）</li>
+                        <li>豆腐、豆浆（可适量）</li>
+                        <li>坚果（核桃、杏仁）</li>
+                        <li>橄榄油、菜籽油</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="purine-table">
+            <h2>📋 常见食物嘌呤含量表</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>食物类别</th>
+                        <th>食物名称</th>
+                        <th>嘌呤含量</th>
+                        <th>建议</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="high-purine">
+                        <td>内脏类</td>
+                        <td>猪肝、鸡肝、猪肾</td>
+                        <td>150-1000 mg/100g</td>
+                        <td>禁止</td>
+                    </tr>
+                    <tr class="high-purine">
+                        <td>海鲜类</td>
+                        <td>沙丁鱼、凤尾鱼</td>
+                        <td>200-350 mg/100g</td>
+                        <td>禁止</td>
+                    </tr>
+                    <tr class="medium-purine">
+                        <td>肉类</td>
+                        <td>猪肉、牛肉、羊肉</td>
+                        <td>75-150 mg/100g</td>
+                        <td>限量</td>
+                    </tr>
+                    <tr class="medium-purine">
+                        <td>鱼类</td>
+                        <td>鲈鱼、鲤鱼、草鱼</td>
+                        <td>75-150 mg/100g</td>
+                        <td>限量</td>
+                    </tr>
+                    <tr class="low-purine">
+                        <td>蛋类</td>
+                        <td>鸡蛋、鸭蛋</td>
+                        <td><25 mg/100g</td>
+                        <td>可食用</td>
+                    </tr>
+                    <tr class="low-purine">
+                        <td>奶类</td>
+                        <td>牛奶、酸奶</td>
+                        <td><25 mg/100g</td>
+                        <td>推荐</td>
+                    </tr>
+                    <tr class="low-purine">
+                        <td>谷物</td>
+                        <td>大米、面粉、燕麦</td>
+                        <td><75 mg/100g</td>
+                        <td>可食用</td>
+                    </tr>
+                    <tr class="low-purine">
+                        <td>蔬菜</td>
+                        <td>白菜、黄瓜、番茄</td>
+                        <td><25 mg/100g</td>
+                        <td>推荐</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="water-reminder">
+            <h3>💧 每日饮水目标</h3>
+            <p><strong style="font-size: 2rem; color: #1565c0;">2000-3000 毫升</strong></p>
+            <p>充足饮水有助于尿酸排泄，建议多次少量饮水，保持尿量在1500ml以上</p>
+            <p style="margin-top: 1rem;">推荐：白开水、淡茶、苏打水（碱化尿液）</p>
+        </div>
+
+        <div class="lifestyle-tips">
+            <h2>🏃 生活方式管理</h2>
+            
+            <div class="tip-item">
+                <h4>✅ 控制体重</h4>
+                <p>肥胖是高尿酸的重要危险因素。建议将BMI控制在18.5-23.9之间。减重应循序渐进，每月减重2-3kg为宜，过快减重会导致尿酸升高。</p>
+            </div>
+
+            <div class="tip-item">
+                <h4>🚶 适度运动</h4>
+                <p>推荐有氧运动：快走、慢跑、游泳、骑自行车，每周至少5次，每次30-60分钟。避免剧烈运动和无氧运动，运动中及时补水。急性痛风发作期应卧床休息。</p>
+            </div>
+
+            <div class="tip-item">
+                <h4>🚭 戒烟限酒</h4>
+                <p><strong>严格禁酒！</strong>尤其是啤酒和白酒。酒精会抑制尿酸排泄并促进嘌呤分解。吸烟也会影响尿酸代谢，建议戒烟。</p>
+            </div>
+
+            <div class="tip-item">
+                <h4>😴 规律作息</h4>
+                <p>保证充足睡眠（7-8小时），避免熬夜。熬夜会导致代谢紊乱，影响尿酸排泄。保持心情舒畅，减少压力。</p>
+            </div>
+
+            <div class="tip-item">
+                <h4>🌡️ 注意保暖</h4>
+                <p>避免关节受凉，尤其是足部、膝盖等易发痛风的部位。寒冷会使尿酸结晶析出，诱发痛风发作。</p>
+            </div>
+
+            <div class="tip-item">
+                <h4>💊 遵医嘱用药</h4>
+                <p>定期复查尿酸水平（建议每1-3个月检查一次）。如需使用降尿酸药物（别嘌醇、非布司他等），应严格按医嘱服用，不可自行停药。</p>
+            </div>
+
+            <div class="tip-item">
+                <h4>🥗 饮食原则</h4>
+                <p>三餐规律，避免暴饮暴食。减少油炸、高糖、高盐食物。多吃新鲜蔬菜水果。烹饪方式以蒸、煮、炖为主，少用煎炸。</p>
+            </div>
+        </div>
+
+        <div class="emergency">
+            <h2>🚨 急性痛风发作应对</h2>
+            <div class="emergency-content">
+                <h4>症状识别：</h4>
+                <ul>
+                    <li>关节突然剧烈疼痛（常见于大脚趾、踝关节、膝关节）</li>
+                    <li>关节红肿、发热</li>
+                    <li>触痛明显，无法触碰</li>
+                    <li>多在夜间或清晨发作</li>
+                </ul>
+
+                <h4 style="margin-top: 1.5rem;">紧急处理：</h4>
+                <ul>
+                    <li><strong>立即就医或联系医生</strong></li>
+                    <li>卧床休息，抬高患肢</li>
+                    <li>局部冷敷（冰袋，15-20分钟）</li>
+                    <li>大量饮水（3000ml以上）</li>
+                    <li>在医生指导下服用消炎止痛药（如秋水仙碱、非甾体抗炎药）</li>
+                    <li>严格低嘌呤饮食，暂停降尿酸药物</li>
+                    <li>避免按摩患处</li>
+                </ul>
+
+                <h4 style="margin-top: 1.5rem; color: #c62828;">⚠️ 切勿：</h4>
+                <ul>
+                    <li>在急性期开始使用降尿酸药物（会加重病情）</li>
+                    <li>热敷患处（会加重炎症）</li>
+                    <li>强行活动关节</li>
+                    <li>自行大量使用止痛药</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="grid">
+            <div class="card">
+                <h3>📅 每日健康清单</h3>
+                <ul style="list-style: none; padding: 0;">
+                    <li style="padding: 0.5rem 0; border-bottom: 1px solid #eee;">☑️ 饮水 2500ml 以上</li>
+                    <li style="padding: 0.5rem 0; border-bottom: 1px solid #eee;">☑️ 避免高嘌呤食物</li>
+                    <li style="padding: 0.5rem 0; border-bottom: 1px solid #eee;">☑️ 运动 30-60 分钟</li>
+                    <li style="padding: 0.5rem 0; border-bottom: 1px solid #eee;">☑️ 按时服药（如需）</li>
+                    <li style="padding: 0.5rem 0; border-bottom: 1px solid #eee;">☑️ 禁酒</li>
+                    <li style="padding: 0.5rem 0; border-bottom: 1px solid #eee;">☑️ 规律作息，避免熬夜</li>
+                    <li style="padding: 0.5rem 0; border-bottom: 1px solid #eee;">☑️ 保持心情愉悦</li>
+                    <li style="padding: 0.5rem 0;">☑️ 记录尿酸值变化</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h3>🥤 推荐饮品</h3>
+                <ul style="list-style: none; padding: 0;">
+                    <li style="padding: 0.8rem; background: #e8f5e9; margin-bottom: 0.5rem; border-radius: 5px;">
+                        <strong style="color: #2e7d32;">✓ 白开水</strong> - 首选，促进尿酸排泄
+                    </li>
+                    <li style="padding: 0.8rem; background: #e8f5e9; margin-bottom: 0.5rem; border-radius: 5px;">
+                        <strong style="color: #2e7d32;">✓ 苏打水</strong> - 碱化尿液，帮助尿酸溶解
+                    </li>
+                    <li style="padding: 0.8rem; background: #e8f5e9; margin-bottom: 0.5rem; border-radius: 5px;">
+                        <strong style="color: #2e7d32;">✓ 淡茶</strong> - 绿茶、菊花茶（不宜过浓）
+                    </li>
+                    <li style="padding: 0.8rem; background: #e8f5e9; margin-bottom: 0.5rem; border-radius: 5px;">
+                        <strong style="color: #2e7d32;">✓ 低脂牛奶</strong> - 降低痛风风险
+                    </li>
+                    <li style="padding: 0.8rem; background: #e8f5e9; margin-bottom: 0.5rem; border-radius: 5px;">
+                        <strong style="color: #2e7d32;">✓ 樱桃汁</strong> - 有助于降低尿酸
+                    </li>
+                    <li style="padding: 0.8rem; background: #ffebee; border-radius: 5px;">
+                        <strong style="color: #c62828;">✗ 禁止</strong> - 啤酒、白酒、黄酒、高糖饮料、浓茶、浓咖啡
+                    </li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h3>🍒 有益食物推荐</h3>
+                <ul style="list-style: none; padding: 0;">
+                    <li style="padding: 0.8rem; background: #e1f5fe; margin-bottom: 0.5rem; border-radius: 5px;">
+                        <strong>樱桃</strong> - 降低尿酸、抗炎
+                    </li>
+                    <li style="padding: 0.8rem; background: #e1f5fe; margin-bottom: 0.5rem; border-radius: 5px;">
+                        <strong>芹菜</strong> - 利尿、碱化尿液
+                    </li>
+                    <li style="padding: 0.8rem; background: #e1f5fe; margin-bottom: 0.5rem; border-radius: 5px;">
+                        <strong>冬瓜</strong> - 利尿消肿
+                    </li>
+                    <li style="padding: 0.8rem; background: #e1f5fe; margin-bottom: 0.5rem; border-radius: 5px;">
+                        <strong>薏米</strong> - 利湿、降尿酸
+                    </li>
+                    <li style="padding: 0.8rem; background: #e1f5fe; margin-bottom: 0.5rem; border-radius: 5px;">
+                        <strong>黄瓜</strong> - 利尿、低嘌呤
+                    </li>
+                    <li style="padding: 0.8rem; background: #e1f5fe; border-radius: 5px;">
+                        <strong>西红柿</strong> - 碱化尿液、抗氧化
+                    </li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h3>⏰ 定期检查项目</h3>
+                <ul style="list-style: none; padding: 0;">
+                    <li style="padding: 0.8rem; background: #fff3e0; margin-bottom: 0.5rem; border-radius: 5px;">
+                        <strong>血尿酸</strong> - 每1-3个月
+                    </li>
+                    <li style="padding: 0.8rem; background: #fff3e0; margin-bottom: 0.5rem; border-radius: 5px;">
+                        <strong>肾功能</strong> - 每3-6个月
+                    </li>
+                    <li style="padding: 0.8rem; background: #fff3e0; margin-bottom: 0.5rem; border-radius: 5px;">
+                        <strong>肝功能</strong> - 每3-6个月（服药者）
+                    </li>
+                    <li style="padding: 0.8rem; background: #fff3e0; margin-bottom: 0.5rem; border-radius: 5px;">
+                        <strong>血脂血糖</strong> - 每3-6个月
+                    </li>
+                    <li style="padding: 0.8rem; background: #fff3e0; margin-bottom: 0.5rem; border-radius: 5px;">
+                        <strong>血压</strong> - 定期监测
+                    </li>
+                    <li style="padding: 0.8rem; background: #fff3e0; border-radius: 5px;">
+                        <strong>关节B超</strong> - 必要时检查
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="info-box" style="background: linear-gradient(135deg, #e8eaf6 0%, #c5cae9 100%); border-left: 5px solid #3f51b5;">
+            <h2 style="color: #283593;">💡 温馨提示</h2>
+            <ul style="list-style: none; padding: 0;">
+                <li style="padding: 0.5rem 0; color: #555;">✓ 高尿酸血症和痛风是可以控制的，关键在于坚持</li>
+                <li style="padding: 0.5rem 0; color: #555;">✓ 降尿酸是长期过程，不要期望短期内快速达标</li>
+                <li style="padding: 0.5rem 0; color: #555;">✓ 生活方式调整比药物更重要，两者需结合</li>
+                <li style="padding: 0.5rem 0; color: #555;">✓ 定期监测，及时调整治疗方案</li>
+                <li style="padding: 0.5rem 0; color: #555;">✓ 保持积极心态，避免焦虑和压力</li>
+                <li style="padding: 0.5rem 0; color: #555;">✓ 有任何疑问请及时咨询医生，不要自行调整用药</li>
+            </ul>
+        </div>
+    </div>
+
+    <footer>
+        <p>💚 科学管理尿酸，享受健康生活 💚</p>
+        <p>本指南仅供健康教育参考，不能替代医生的诊断和治疗建议</p>
+        <p>© 2024 高尿酸·痛风健康管理</p>
+    </footer>
+</body>
+</html>
